@@ -5,9 +5,11 @@
 package br.unigran.models;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import lombok.Data;
 
 /**
@@ -16,6 +18,9 @@ import lombok.Data;
  */
 @Entity
 public @Data class  Funcao implements Serializable {
+
+    @OneToMany(mappedBy = "funcao")
+    private List<Login> logins;
 
     /**
      * Dentista =1

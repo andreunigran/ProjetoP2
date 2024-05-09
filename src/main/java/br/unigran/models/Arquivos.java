@@ -23,7 +23,7 @@ public @Data class Arquivos implements Serializable {
 
     @OneToMany(mappedBy = "anexos")
     private List<Consulta> consultas;
- 
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

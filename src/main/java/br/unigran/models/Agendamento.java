@@ -26,7 +26,7 @@ public @Data class  Agendamento implements Serializable {
     private Long id;
     @ManyToOne
     private Paciente paciente;
- 
+     
     @ManyToOne
     private Funcionario recepcionista;
     

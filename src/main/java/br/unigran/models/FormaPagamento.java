@@ -21,10 +21,7 @@ import lombok.Data;
 @Entity
 public @Data class FormaPagamento implements Serializable {
 
-    @OneToMany(mappedBy = "anexos")
-    private List<Consulta> consultas;
- 
-    
+   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

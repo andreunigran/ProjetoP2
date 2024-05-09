@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import lombok.Data;
@@ -23,11 +24,12 @@ import lombok.Data;
 public @Data class  Funcionario implements Serializable {
 
     @OneToMany(mappedBy = "dentista")
-    private List<Agendamento> agendamentos;
-
-    @OneToMany(mappedBy = "dentista")
     private List<Consulta> consultas;
 
+    @OneToMany(mappedBy = "recepcionista")
+    private List<Agendamento> agendamentos;
+
+  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

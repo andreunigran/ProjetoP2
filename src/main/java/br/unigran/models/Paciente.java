@@ -28,17 +28,17 @@ public @Data class  Paciente implements Serializable {
     @OneToMany(mappedBy = "paciente")
     private List<Prontuario> prontuarios;
 
+    @OneToMany(mappedBy = "responsavel")
+    private List<Paciente> pacientes;
+
     @OneToMany(mappedBy = "paciente")
-    private List<Agendamento> agendamentos;
+    private List<Contato> contatos;
 
     @OneToMany(mappedBy = "paciente")
     private List<Consulta> consultas;
 
     @OneToMany(mappedBy = "paciente")
-    private List<Contato> contatos;
-
-    @OneToMany(mappedBy = "responsavel" ,fetch = FetchType.LAZY)
-    private List<Paciente> pacientes;
+    private List<Agendamento> agendamentos;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

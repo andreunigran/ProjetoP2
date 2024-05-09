@@ -24,7 +24,7 @@ import lombok.Data;
 @Entity
 public @Data class  Endereco implements Serializable {
 
-    @OneToMany(mappedBy = "endereco",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "endereco")
     private List<Paciente> pacientes;
 
     @Id

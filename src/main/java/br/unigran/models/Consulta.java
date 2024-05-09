@@ -25,7 +25,7 @@ public @Data class Consulta implements Serializable {
 
     @OneToMany(mappedBy = "consulta")
     private List<Prontuarios> prontuarioss;
- 
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,12 +5,14 @@
 package br.unigran.models;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import lombok.Data;
 
@@ -20,7 +22,10 @@ import lombok.Data;
  */
 @Entity
 public @Data class Login implements Serializable {
-    //mapeamento
+
+    @OneToMany(mappedBy = "usuarioCadastro")
+    private List<Material> materials;
+
     @OneToOne(mappedBy = "login")
     private Funcionario funcionario;
 
@@ -33,7 +38,6 @@ public @Data class Login implements Serializable {
     private String senha;
 
     @ManyToOne
-    private Funcao funcao;
-  
+    private Funcao funcao; 
   
 }

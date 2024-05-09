@@ -30,5 +30,4 @@ public @Data class  Material implements Serializable {
     
     @ManyToOne
     private Login usuarioCadastro;//login cadstro
-  
 }

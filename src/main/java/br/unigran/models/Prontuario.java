@@ -26,7 +26,7 @@ public @Data class Prontuario implements Serializable {
 
     @OneToMany(mappedBy = "prontuario")
     private List<Prontuarios> prontuarioss;
- 
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

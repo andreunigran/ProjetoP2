@@ -24,6 +24,7 @@ public @Data class  Cidade implements Serializable {
     @OneToMany(mappedBy = "cidade")
     private List<Endereco> enderecos;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

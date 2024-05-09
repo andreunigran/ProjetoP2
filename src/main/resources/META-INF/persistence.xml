@@ -3,11 +3,24 @@
   <persistence-unit name="br.unigran_ProjetoP2_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.unigran.models.Funcionario</class>
+    <class>br.unigran.models.Agendamento</class>
+    <class>br.unigran.models.Arquivos</class>
+    <class>br.unigran.models.Cidade</class>
+    <class>br.unigran.models.Consulta</class>
+    <class>br.unigran.models.Contato</class>
+    <class>br.unigran.models.Endereco</class>
+    <class>br.unigran.models.FormaPagamento</class>
+    <class>br.unigran.models.Funcao</class>
+    <class>br.unigran.models.Login</class>
+    <class>br.unigran.models.Material</class>
+    <class>br.unigran.models.Paciente</class>
+    <class>br.unigran.models.Prontuario</class>
+    <class>br.unigran.models.Prontuarios</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="javax.persistence.jdbc.password" value="postgres"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
