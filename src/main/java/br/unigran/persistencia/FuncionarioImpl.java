@@ -10,6 +10,10 @@ import java.util.List;
  *
  * @author andre
  */
-public interface FuncionarioDao extends IntefaceDao {
-    public  List listarbyNome();
+public class FuncionarioImpl implements FuncionarioDao{
+
+    @Override
+    public List listarbyNome() {
+        return List.of();
+    }
 }

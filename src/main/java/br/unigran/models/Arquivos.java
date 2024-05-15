@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.Data;
 
@@ -21,9 +22,7 @@ import lombok.Data;
 @Entity
 public @Data class Arquivos implements Serializable {
 
-    @OneToMany(mappedBy = "anexos")
-    private List<Consulta> consultas;
-
+   
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +30,6 @@ public @Data class Arquivos implements Serializable {
     @Column(length = 250, name = "caminho_arquivo")
     private String caminhoArquivo;
   
+    @ManyToOne
+    ProcedimentoRealizado procedimentoRealizado;
 }

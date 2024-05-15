@@ -16,6 +16,8 @@
     <class>br.unigran.models.Paciente</class>
     <class>br.unigran.models.Prontuario</class>
     <class>br.unigran.models.Prontuarios</class>
+    <class>br.unigran.models.Procedimento</class>
+    <class>br.unigran.models.ProcedimentoRealizado</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

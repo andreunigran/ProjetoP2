@@ -6,12 +6,8 @@ package br.unigran.models;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
 import lombok.Data;
 
 /**
@@ -21,7 +17,7 @@ import lombok.Data;
 @Entity
 public @Data class  Cidade implements Serializable {
 
-    @OneToMany(mappedBy = "cidade")
+    @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)
     private List<Endereco> enderecos;
 
 

@@ -24,6 +24,12 @@ import lombok.Data;
 public @Data class Consulta implements Serializable {
 
     @OneToMany(mappedBy = "consulta")
+    private List<ProcedimentoRealizado> procedimentoRealizados;
+
+    @OneToMany(mappedBy = "consulta")
+    private List<FormaPagamento> formaPagamentos;
+
+    @OneToMany(mappedBy = "consulta")
     private List<Prontuarios> prontuarioss;
 
     

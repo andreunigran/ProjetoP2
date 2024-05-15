@@ -6,6 +6,7 @@ package br.unigran.projetop2;
 
 import br.unigran.models.Funcionario;
 import br.unigran.persistencia.FuncionarioDao;
+import br.unigran.persistencia.FuncionarioImpl;
 
 /**
  *
@@ -16,7 +17,7 @@ public class ProjetoP2 {
     public static void main(String[] args) {
         System.out.println("Hello World!");
         
-        FuncionarioDao dao = new FuncionarioDao();
+        FuncionarioDao dao = new FuncionarioImpl();
         dao.listar(Funcionario.class);
     }
 }

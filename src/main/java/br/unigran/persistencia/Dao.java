@@ -56,6 +56,7 @@ public class Dao {
     }
 
     void remove(Integer id, Class clazz) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        em.getTransaction().begin();
+      //  em.remove();
+        em.getTransaction().commit();    }
 }
