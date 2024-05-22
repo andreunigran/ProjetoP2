@@ -4,9 +4,8 @@
 
 package br.unigran.projetop2;
 
-import br.unigran.models.Funcionario;
-import br.unigran.persistencia.FuncionarioDao;
-import br.unigran.persistencia.FuncionarioImpl;
+import br.unigran.controllers.view.cadastros.Cadastro;
+import br.unigran.controllers.view.cadastros.CadastroCliente;
 
 /**
  *
@@ -17,7 +16,6 @@ public class ProjetoP2 {
     public static void main(String[] args) {
         System.out.println("Hello World!");
         
-        FuncionarioDao dao = new FuncionarioImpl();
-        dao.listar(Funcionario.class);
+      new Cadastro(null, false,new CadastroCliente()).setVisible(true);
     }
 }
