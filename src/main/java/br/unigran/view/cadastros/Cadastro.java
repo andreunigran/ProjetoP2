@@ -2,10 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package br.unigran.controllers.view.cadastros;
+package br.unigran.view.cadastros;
 
-import br.unigran.controllers.view.util.PainelInterface;
+import br.unigran.controllers.Controller;
+import br.unigran.view.util.PainelInterface;
 import java.awt.BorderLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -18,11 +22,14 @@ public class Cadastro extends javax.swing.JDialog {
      * Creates new form Cadastro
      */
     PainelInterface painel;
-    public Cadastro(java.awt.Frame parent, boolean modal, PainelInterface painel) {
+    Controller controller;
+    public Cadastro(java.awt.Frame parent, boolean modal, PainelInterface painel,Controller c) {
         super(parent, modal);
         initComponents();
         add(painel,BorderLayout.CENTER);
         this.painel=painel;
+        controller=c;
+     //   setLocationRelativeTo(parent);
         pack();
     }
 
@@ -82,7 +89,8 @@ public class Cadastro extends javax.swing.JDialog {
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
-        pack();
+        setSize(new java.awt.Dimension(400, 337));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -91,8 +99,14 @@ public class Cadastro extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        painel.salvar();
+        try {
+            // TODO add your handling code here:
+            controller.salvar(painel.salvar());
+       
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
    

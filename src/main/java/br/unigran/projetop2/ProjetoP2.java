@@ -1,21 +1,25 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package br.unigran.projetop2;
 
-import br.unigran.controllers.view.cadastros.Cadastro;
-import br.unigran.controllers.view.cadastros.CadastroCliente;
+import br.unigran.view.app.TelaPrincipal;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import javax.swing.UIManager;
 
 /**
  *
  * @author andre
  */
 public class ProjetoP2 {
-
+    
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         
-      new Cadastro(null, false,new CadastroCliente()).setVisible(true);
+        FlatLaf.registerCustomDefaultsSource("br.unigran.tema");
+        FlatMacDarkLaf.setup();
+        UIManager.put("Button.arc", 999);
+        
+        new TelaPrincipal().setVisible(true);
     }
 }

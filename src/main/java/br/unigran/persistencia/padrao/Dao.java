@@ -51,7 +51,7 @@ public class Dao {
         em.getTransaction().commit();
     }
     public  List listar(Class c, String where){
-        return em.createNativeQuery("select o from "+c.getSimpleName()+" o where 1=1 "+where)
+        return em.createQuery("select o from "+c.getSimpleName()+" o where 1=1 "+where)
                 .getResultList();
     }
 
