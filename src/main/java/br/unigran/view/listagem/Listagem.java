@@ -5,9 +5,15 @@ import br.unigran.controllers.Controller;
 import br.unigran.dto.DTO;
 import br.unigran.view.cadastros.Cadastro;
 import br.unigran.view.util.PainelInterface;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignP;
+import org.kordamp.ikonli.swing.FontIcon;
 
 /**
  *
@@ -24,9 +30,20 @@ public class Listagem extends JFrame {
 
     public Listagem(java.awt.Frame parent, PainelInterface interfaceCadastro, Controller controller) {
         initComponents();
+        
+         FontIcon icon = FontIcon.of(MaterialDesignA.ALPHA_G_CIRCLE_OUTLINE);
+               icon.setIconSize(30);
+        icon.setIconColor(Color.GREEN);
+
+                jbNovo.setIcon(icon);
+        
         this.interfaceCadastro = interfaceCadastro;
         this.controller = controller;
-        atualiza();
+    
+//        Timer timer = new Timer(1000, (ActionEvent e) ->{
+//            atualiza();
+//        });
+//        timer.start();
     }
 
     /**
@@ -169,13 +186,14 @@ public class Listagem extends JFrame {
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
         // TODO add your handling code here:
         new Cadastro(null, true, interfaceCadastro,controller).setVisible(true);
-         atualiza();
+        atualiza();
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
         interfaceCadastro.preencheCampos(lista.get(jTable1.getSelectedRow()));
         new Cadastro(null, true, interfaceCadastro,controller).setVisible(true);
-               atualiza();
+        atualiza();
+               
     }//GEN-LAST:event_jbEditarActionPerformed
 
     private void jbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSairActionPerformed
@@ -186,8 +204,8 @@ public class Listagem extends JFrame {
     private void jbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRemoverActionPerformed
             // TODO add your handling code here:
             controller.remover( lista.get(jTable1.getSelectedRow()));
+            atualiza();
         
-        atualiza();
     }//GEN-LAST:event_jbRemoverActionPerformed
 
     private void atualiza() {

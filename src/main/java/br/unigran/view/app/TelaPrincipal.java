@@ -6,6 +6,24 @@ import br.unigran.controllers.PacienteController;
 import br.unigran.view.cadastros.CadastroCliente;
 import br.unigran.view.cadastros.CadastroFuncionario;
 import br.unigran.view.listagem.Listagem;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Timer;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -19,8 +37,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+      //  clockLabel();
+        clockLabel2();
+    }
+    public void clockLabel() {
+        Timer timer = new Timer(1000, (ActionEvent e) ->{
+        jlHora.setText(getDateTime());
+        });
+        timer.start();
+    }
+    public void clockLabel2() {
+        Thread timer = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true)
+                   jlHora.setText(getDateTime());
+            }
+        });
+        timer.start();
     }
 
+    private String getDateTime() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,10 +73,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jlHora = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton1.setText("Paciente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +112,44 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
+        jlHora.setText("jLabel1");
+        jPanel2.add(jlHora);
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
+        jMenu1.setText("Cadastros");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Relatorios");
+
+        jMenuItem1.setText("Paciente");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuItem2.setText("Funcionario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("OutroFuncionario");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -82,11 +167,84 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        try {
+            FuncionarioController fc =new FuncionarioController();
+
+            // TODO add your handling code here:
+            HashMap parameters = new HashMap();
+            // Ou seja, o arquivo .jasper
+            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/relatorios/Funcionarios.jasper"));
+
+            // JasperPrint representa o relatório gerado.
+            // É criado um JasperPrint a partir de um JasperReport, contendo o relatório preenchido.
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jr, parameters, fc.getConnJDBC());
+     
+            JasperViewer viw = new JasperViewer(jasperPrint, false);
+            viw.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try {
+            // TODO add your handling code here:
+            FuncionarioController fc =new FuncionarioController();
+            HashMap parameters = new HashMap();
+            List dados = fc.getListaDados();
+            
+            JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(dados);
+            parameters.put("Title", "Relatorio");
+            
+            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/relatorios/Funcionarios.jasper"));
+           
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jr, parameters, beanColDataSource);
+            JasperViewer viw = new JasperViewer(jasperPrint, false);
+            viw.setVisible(true);
+       
+        } catch (JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        try {
+                       FuncionarioController fc =new FuncionarioController();
+
+            // TODO add your handling code here:
+            HashMap parameters = new HashMap();
+            List dataList = new LinkedList();
+            
+            parameters.put("REPORT_CONTEXT", "Olá mundo");
+            
+            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResource("/relatorios/Funcionarios.jrxml").getFile());
+            // JRBeanCollectionDataSource dados = new JRBeanCollectionDataSource(lista, false);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(relatorio, parameters, fc.getConnJDBC());
+            
+            JasperViewer viw = new JasperViewer(jasperPrint, false);
+            viw.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jlHora;
     // End of variables declaration//GEN-END:variables
 }

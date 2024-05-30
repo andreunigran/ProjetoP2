@@ -4,6 +4,9 @@
  */
 package br.unigran.dto;
 
+import br.unigran.persistencia.padrao.DaoJDBC;
+import java.sql.Connection;
+
 /**
  *
  * @author andre
@@ -11,4 +14,5 @@ package br.unigran.dto;
 public abstract class DTO {
         public String id;
         public abstract Object builder();
+        
 }

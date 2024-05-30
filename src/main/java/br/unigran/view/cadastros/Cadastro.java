@@ -7,10 +7,13 @@ package br.unigran.view.cadastros;
 import br.unigran.controllers.Controller;
 import br.unigran.view.util.PainelInterface;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignS;
+import org.kordamp.ikonli.swing.FontIcon;
 
 /**
  *
@@ -30,6 +33,8 @@ public class Cadastro extends javax.swing.JDialog {
         this.painel=painel;
         controller=c;
      //   setLocationRelativeTo(parent);
+     
+      
         pack();
     }
 

@@ -5,6 +5,9 @@
 package br.unigran.controllers;
 
 import br.unigran.dto.DTO;
+import br.unigran.persistencia.padrao.DaoJDBC;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,4 +26,8 @@ public interface Controller {
 
     public void salvar(DTO dto) throws Exception;
 
+    public default Connection getConnJDBC() throws SQLException {
+            
+            return DaoJDBC.getInstace().getConnection();
+        }
 }
