@@ -5,14 +5,17 @@
 package br.unigran.dto;
 
 import br.unigran.models.Funcionario;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import lombok.Getter;
 
 /**
  *
  * @author andre
  */
-public class FuncionarioDTO extends DTO{
+@Getter
+public class FuncionarioDTO extends DTO implements Serializable{
     public String nomeFuncionario;
     public String numeroRegistro;
     

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Funcionarios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0df90e2c-7f21-4ebd-b962-013d55f4cf79">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="andre"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="title" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from paciente]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="data_nascimento" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="data_nascimento"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_nascimento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="numero_casa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="numero_casa"/>
+		<property name="com.jaspersoft.studio.field.label" value="numero_casa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="endereco_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="endereco_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="endereco_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="responsavel_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="responsavel_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="responsavel_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<textField textAdjust="StretchHeight">
+				<reportElement stretchType="ContainerHeight" x="-18" y="0" width="593" height="30" uuid="c436635e-0c43-4483-9639-e420218b17f3"/>
+				<textElement textAlignment="Center">
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[ $P{title}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="100" height="30" uuid="66a24bd8-fcd4-4f36-9a49-47637f45bcb8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="27a68791-4a11-48ac-be94-4cceb7462dd8"/>
+				</reportElement>
+				<text><![CDATA[nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="0" width="100" height="30" uuid="3e46fb13-8b05-4761-b284-cf691ac01f83">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e70dc132-50da-44dd-ad3e-17008d128305"/>
+				</reportElement>
+				<text><![CDATA[data_nascimento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="4" width="100" height="30" uuid="7027771d-5728-4166-b568-85077c1f4726">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="27a68791-4a11-48ac-be94-4cceb7462dd8"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="4" width="100" height="30" uuid="66442b15-3584-4fc2-8256-9ddbf1509006">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e70dc132-50da-44dd-ad3e-17008d128305"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{data_nascimento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="259" y="13" width="100" height="30" uuid="0627caf0-b00a-4f3e-9222-2de47227531e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="50" splitType="Stretch"/>
+	</summary>
+</jasperReport>

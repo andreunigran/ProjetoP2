@@ -7,11 +7,12 @@ import br.unigran.view.cadastros.CadastroCliente;
 import br.unigran.view.cadastros.CadastroFuncionario;
 import br.unigran.view.listagem.Listagem;
 import java.awt.event.ActionEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -138,7 +139,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
-        jMenuItem3.setText("OutroFuncionario");
+        jMenuItem3.setText("Paciente Compilado");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -173,8 +174,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             // TODO add your handling code here:
             HashMap parameters = new HashMap();
+           
+            parameters.put("title", "Relatorio de pacientes");
+                        
             // Ou seja, o arquivo .jasper
-            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/relatorios/Funcionarios.jasper"));
+            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/relatorios/Pacientes.jasper"));
 
             // JasperPrint representa o relatório gerado.
             // É criado um JasperPrint a partir de um JasperReport, contendo o relatório preenchido.
@@ -182,9 +186,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
      
             JasperViewer viw = new JasperViewer(jasperPrint, false);
             viw.setVisible(true);
-        } catch (JRException ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (JRException | SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -194,12 +196,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             FuncionarioController fc =new FuncionarioController();
             HashMap parameters = new HashMap();
             List dados = fc.getListaDados();
-            
+          
             JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(dados);
             parameters.put("Title", "Relatorio");
             
             JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/relatorios/Funcionarios.jasper"));
            
+            
             JasperPrint jasperPrint = JasperFillManager.fillReport(jr, parameters, beanColDataSource);
             JasperViewer viw = new JasperViewer(jasperPrint, false);
             viw.setVisible(true);
@@ -215,19 +218,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             // TODO add your handling code here:
             HashMap parameters = new HashMap();
-            List dataList = new LinkedList();
             
-            parameters.put("REPORT_CONTEXT", "Olá mundo");
-            
-            JasperReport relatorio = JasperCompileManager.compileReport(getClass().getResource("/relatorios/Funcionarios.jrxml").getFile());
+            parameters.put("title", "Olá URL resource = mundo");
+            FileInputStream fileInputStream = new FileInputStream(getClass().getResource("/relatorios/Pacientes.jrxml").getFile());
+            JasperReport relatorio = JasperCompileManager.compileReport(fileInputStream);
             // JRBeanCollectionDataSource dados = new JRBeanCollectionDataSource(lista, false);
             JasperPrint jasperPrint = JasperFillManager.fillReport(relatorio, parameters, fc.getConnJDBC());
             
             JasperViewer viw = new JasperViewer(jasperPrint, false);
             viw.setVisible(true);
-        } catch (JRException ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (JRException | SQLException | FileNotFoundException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
