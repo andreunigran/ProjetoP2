@@ -54,9 +54,12 @@ public class Dao {
         return em.createQuery("select o from "+c.getSimpleName()+" o where 1=1 "+where)
                 .getResultList();
     }
+    public Object findbyID(Long id,Class clazz){
+        return em.find(clazz, id);
+    }
 
-    void remove(Integer id, Class clazz) {
+    void remove(Long id, Class clazz) {
         em.getTransaction().begin();
-      //  em.remove();
+        em.remove(em.find(clazz, id));
         em.getTransaction().commit();    }
 }

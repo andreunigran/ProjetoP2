@@ -4,9 +4,6 @@
  */
 package br.unigran.dto;
 
-import br.unigran.persistencia.padrao.DaoJDBC;
-import java.sql.Connection;
-
 /**
  *
  * @author andre

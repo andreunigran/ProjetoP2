@@ -6,6 +6,7 @@ package br.unigran.models;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,13 +16,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author andre
  */
 @Entity
-public @Data class  Funcionario implements Serializable {
+public @Getter@Setter class  Funcionario implements Serializable {
 
     @OneToMany(mappedBy = "dentista")
     private List<Consulta> consultas;
@@ -42,5 +45,28 @@ public @Data class  Funcionario implements Serializable {
     @OneToOne
     private Login login;
 
-     
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Funcionario other = (Funcionario) obj;
+        return Objects.equals(this.id, other.id);
+    }
+
+    
+    
 }

@@ -5,7 +5,6 @@ import br.unigran.dto.FuncionarioDTO;
 import br.unigran.models.Funcionario;
 import br.unigran.persistencia.funcionario.FuncionarioDao;
 import br.unigran.persistencia.funcionario.FuncionarioImpl;
-import java.sql.Connection;
 import java.util.List;
 import org.json.JSONObject;
 
@@ -73,7 +72,7 @@ public class FuncionarioController implements Controller {
 
     @Override
     public void remover(DTO dto) {
-        dao.remove(((FuncionarioDTO) dto).builder());
+        dao.remove(Long.valueOf(dto.id),Funcionario.class);
     }
 
   

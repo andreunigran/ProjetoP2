@@ -24,7 +24,7 @@ public interface IntefaceDao {
         Dao.getInstace().remove(entidade);
     }
 
-    public default void remove(Integer id,Class clazz){
+    public default void remove(Long id,Class clazz){
         Dao.getInstace ().remove(id,clazz);
     }
     public default List listar(Class clazz,String where){
@@ -32,5 +32,8 @@ public interface IntefaceDao {
     }
     public default List listar(Class clazz){
         return Dao.getInstace ().listar(clazz, "");
+    }
+       public default Object findById(Long id,Class clazz){
+        return Dao.getInstace ().findbyID(id, clazz);
     }
 }

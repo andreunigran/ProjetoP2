@@ -6,13 +6,10 @@ import br.unigran.dto.DTO;
 import br.unigran.view.cadastros.Cadastro;
 import br.unigran.view.util.PainelInterface;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.JFrame;
-import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
-import org.kordamp.ikonli.materialdesign2.MaterialDesignP;
 import org.kordamp.ikonli.swing.FontIcon;
 
 /**
@@ -39,11 +36,7 @@ public class Listagem extends JFrame {
         
         this.interfaceCadastro = interfaceCadastro;
         this.controller = controller;
-    
-//        Timer timer = new Timer(1000, (ActionEvent e) ->{
-//            atualiza();
-//        });
-//        timer.start();
+                atualiza();
     }
 
     /**
@@ -121,6 +114,11 @@ public class Listagem extends JFrame {
         });
 
         jbPesquisar.setText("Pesquisar");
+        jbPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -205,10 +203,13 @@ public class Listagem extends JFrame {
             // TODO add your handling code here:
             controller.remover( lista.get(jTable1.getSelectedRow()));
             atualiza();
-        
     }//GEN-LAST:event_jbRemoverActionPerformed
 
-    private void atualiza() {
+    private void jbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarActionPerformed
+        atualiza();
+    }//GEN-LAST:event_jbPesquisarActionPerformed
+
+    private synchronized void atualiza() {
         lista = controller.getListaDados();
         String names[] = controller.getTitulosColunas();
         Object[][] data = new Object[lista.size()][names.length];

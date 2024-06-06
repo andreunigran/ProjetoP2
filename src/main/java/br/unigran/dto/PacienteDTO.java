@@ -16,7 +16,6 @@ import java.util.List;
 public class PacienteDTO extends DTO{
     public String nomePaciente;
     public Date data;
-    public String id;
     
     public Paciente builder(){
         Paciente paciente = new Paciente();

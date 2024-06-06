@@ -38,6 +38,7 @@ public class PacienteController implements Controller {
 
     @Override
     public void remover(DTO dto) {
-        dao.remove(((PacienteDTO) dto).builder());
+        Object findById = dao.findById(Long.parseLong(dto.id), Paciente.class);
+        dao.remove(findById);
     }
 }
